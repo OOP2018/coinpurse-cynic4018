@@ -5,7 +5,7 @@ import java.util.List;
 /**
  * MoneyUtil class for demonstrate compareTo method is working correct
  * and it can sort the coins by value.
- * @author Katapon Sinpunyawong
+ * @author Katapon Sinpunyawong.
  */
 public class MoneyUtil {
 	
@@ -42,6 +42,12 @@ public class MoneyUtil {
 		System.out.println();
 	}
 	
+	/**
+	 * In main method that test compare 
+	 * such as different currency but same value, compareTo method check 
+	 * and different between not sort - sort. 
+	 * @param add coin to coins list and test.
+	 */
 	public static void main(String[]args) {
 		
 		List<Coin> coins = new ArrayList<Coin>();

@@ -17,7 +17,7 @@ import org.junit.Test;
  * To run these tests, right click on this file (in Project panel)
  * and choose Run As -> JUnit test
  * 
- * @author  Katapon Sinpunyawong
+ * @author  Katapon Sinpunyawong.
  * @version 2018.01.19
  */
 public class PurseTest {
