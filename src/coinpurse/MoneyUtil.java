@@ -5,7 +5,7 @@ import java.util.List;
 /**
  * MoneyUtil class for demonstrate compareTo method is working correct
  * and it can sort the coins by value.
- * @author Katapon Sinpunyawong.
+ * @author Katapon Sinpunyawong
  */
 public class MoneyUtil {
 	
