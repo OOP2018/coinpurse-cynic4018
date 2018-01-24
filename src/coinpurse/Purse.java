@@ -1,8 +1,9 @@
 package coinpurse;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Collections;
 
-//TODO import List, ArrayList, and Collections
+
 // You will use Collections.sort() to sort the coins
 
 /**
@@ -10,11 +11,11 @@ import java.util.List;
  *  You can insert coins, withdraw money, check the balance,
  *  and check if the purse is full.
  *  
- *  @author your name
+ *  @author Katapon Sinpunyawong
  */
 public class Purse {
     /** Collection of objects in the purse. */
-  List<Coin> money;
+	private List<Coin> money;
     
     /** Capacity is maximum number of items the purse can hold.
      *  Capacity is set when the purse is created and cannot be changed.
@@ -27,7 +28,7 @@ public class Purse {
      */
     public Purse( int capacity ) {
     	this.capacity = capacity;
-    	money = new ArrayList<>();
+    	money = new ArrayList<Coin>();
     }
 
     /**
@@ -35,14 +36,26 @@ public class Purse {
      * This is the number of coins, not their value.
      * @return the number of coins in the purse
      */
-    public int count() { return 0; }
+    public int count() { 
+    	
+    	int counter = money.size();
+    	return counter; 
+    	
+    }
     
     /** 
      *  Get the total value of all items in the purse.
      *  @return the total value of items in the purse.
      */
     public double getBalance() {
-		return 0.0; 
+    	
+    	double balance = 0;
+    	
+		for(Coin coins : money)
+		{
+			balance += coins.getValue();
+		}
+    	return balance; 
 	}
 
     
@@ -50,7 +63,6 @@ public class Purse {
      * Return the capacity of the coin purse.
      * @return the capacity
      */
-    //TODO write accessor method for capacity. Use Java naming convention.
     public int getCapacity() { 
 		return 0; 
 	}
