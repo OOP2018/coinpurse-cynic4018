@@ -75,7 +75,7 @@ public class Purse {
      */
     public boolean isFull() {
     	
-        if(money.size() >= this.getCapacity()) 
+        if(count() >= this.getCapacity()) 
         {
         	return true;
         }
@@ -114,18 +114,17 @@ public class Purse {
          List<Coin> list = new ArrayList<Coin>();
         
          Collections.sort(money);
-         Collections.reverse(money);
          
          double amountNeededToWithdraw = amount;
          
-         if(amount > getBalance() || amount <= 0) 
+         if(amount > getBalance() || amount < 0) 
          {
         	return null; 
          }
          
-         for(int count = 0 ; count < money.size() ; count++ ) 
+         for(int count = money.size()-1 ; count >= 0 ; count-- ) 
          {
-        	 if(amountNeededToWithdraw >= money.get(count).getValue()) 
+        	 if(amountNeededToWithdraw-money.get(count).getValue() >= 0) 
         	 {
         		 amountNeededToWithdraw -= money.get(count).getValue();
         		list.add(money.get(count));
