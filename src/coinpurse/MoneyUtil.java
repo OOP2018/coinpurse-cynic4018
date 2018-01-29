@@ -43,6 +43,36 @@ public class MoneyUtil {
 	}
 	
 	/**
+	 * 
+	 * this use .sort in java.util.Collections for sort coins in list. 
+	 * sort from lowest -> highest value. 
+	 * @param sort coins in coins list.
+	 */
+	public static void sortCoin(List<Coin> coins) {
+		java.util.Collections.sort(coins);
+	}
+	
+	/**
+	 * 
+	 * this method use for sort the currency you want  to see from coins list.
+	 * @param sorted by currency from coins list.
+	 * @return coins list that sorted(sort by currency that you want) 
+	 */
+	public static List<Coin> filterByCurrency(List<Coin> coins, String currency) {
+		
+		List<Coin> sortCurrency = new ArrayList<>();
+		
+		for(Coin count : coins) 
+		{
+			if(count.getCurrency().equals(currency)) 
+			{ 
+				sortCurrency.add(count);
+			}
+		}
+		return sortCurrency;
+	}
+	
+	/**
 	 * In main method that test compare 
 	 * such as different currency but same value, compareTo method check 
 	 * and different between not sort - sort. 
@@ -82,8 +112,12 @@ public class MoneyUtil {
 	
 		//sort
 		System.out.println("+-+-+-+-+ Sort +-+-+-+-");
-		java.util.Collections.sort(coins);
+		sortCoin(coins);
 		printCoins(coins);
+		
+		System.out.println("+-+-+-+-+ Filter +-+-+-+-");
+		List<Coin> filter = filterByCurrency(coins, "USD");
+		printCoins(filter);
 	}
 
 }
