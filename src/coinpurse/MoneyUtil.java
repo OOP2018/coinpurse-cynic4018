@@ -1,5 +1,6 @@
 package coinpurse;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 
 /**
@@ -43,6 +44,39 @@ public class MoneyUtil {
 	}
 	
 	/**
+	 * print coins list.
+	 * @param print coins and banknotes in coins list.
+	 */
+	public static void printValuable(List<Valuable> cbvalue) {
+		
+		System.out.print("list = {");
+		
+		if(cbvalue.size()==0) 
+		{
+			System.out.println(" }");
+		}
+		else 
+		{
+			for(int count=0 ; count < cbvalue.size() ; count++) 
+			{
+				if(count==cbvalue.size()-1) 
+				{
+					System.out.printf(" %s",cbvalue.get(count));
+					break;
+				}
+				else 
+				{
+					System.out.printf(" %s,",cbvalue.get(count));
+				}
+			}
+			System.out.println(" }");
+		}
+		
+		
+		System.out.println();
+	}
+	
+	/**
 	 * 
 	 * this use .sort in java.util.Collections for sort coins in list. 
 	 * sort from lowest -> highest value. 
@@ -54,15 +88,26 @@ public class MoneyUtil {
 	
 	/**
 	 * 
-	 * this method use for sort the currency you want  to see from coins list.
-	 * @param sorted by currency from coins list.
-	 * @return coins list that sorted(sort by currency that you want) 
+	 * this use .sort in java.util.Collections for sort coin and banknote in list. 
+	 * sort from lowest -> highest value. 
+	 * @param sort money in coins list by comparator<Valuable>.
 	 */
-	public static List<Coin> filterByCurrency(List<Coin> coins, String currency) {
+	public static void sortCoinAndBanknote(List<Coin> cbvalue) {
+		Comparator<Valuable> comp = new ValueComparator();
+		java.util.Collections.sort(cbvalue, comp);
+	}
+	
+	/**
+	 * 
+	 * this method use for sort the currency you want  to see from coins list.
+	 * @param sorted by currency from coins and money in List<valuable> sortCurrency list.
+	 * @return coins and banknotes in list that sorted(sort by currency that you want) 
+	 */
+	public static List<Valuable> filterByCurrency(List<Coin> cbmoney, String currency) {
 		
-		List<Coin> sortCurrency = new ArrayList<>();
+		List<Valuable> sortCurrency = new ArrayList<>();
 		
-		for(Coin count : coins) 
+		for(Valuable count : cbmoney) 
 		{
 			if(count.getCurrency().equals(currency)) 
 			{ 
@@ -114,10 +159,14 @@ public class MoneyUtil {
 		System.out.println("+-+-+-+-+ Sort +-+-+-+-");
 		sortCoin(coins);
 		printCoins(coins);
+	
+		System.out.println();
 		
 		System.out.println("+-+-+-+-+ Filter +-+-+-+-");
-		List<Coin> filter = filterByCurrency(coins, "USD");
-		printCoins(filter);
+		sortCoinAndBanknote(coins);
+		List<Valuable> filter = filterByCurrency(coins, "USD");
+		printValuable(filter);
+		
 	}
 
 }

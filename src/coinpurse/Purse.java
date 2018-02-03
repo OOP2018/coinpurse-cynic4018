@@ -2,6 +2,7 @@ package coinpurse;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Collections;
+import java.util.Comparator;
 
 
 // You will use Collections.sort() to sort the coins
@@ -15,12 +16,14 @@ import java.util.Collections;
  */
 public class Purse {
     /** Collection of objects in the purse. */
-	private List<Coin> money;
+	private List<Valuable> money;
     
     /** Capacity is maximum number of items the purse can hold.
      *  Capacity is set when the purse is created and cannot be changed.
      */
     private final int capacity;
+    
+    private Comparator<Valuable> comp = new ValueComparator();
     
     /** 
      *  Create a purse with a specified capacity.
@@ -28,7 +31,7 @@ public class Purse {
      */
     public Purse( int capacity ) {
     	this.capacity = capacity;
-    	money = new ArrayList<Coin>();
+    	money = new ArrayList<Valuable>();
     }
 
     /**
@@ -51,9 +54,9 @@ public class Purse {
     	
     	double balance = 0;
     	
-		for(Coin coins : money)
+		for(Valuable cbvalue : money)
 		{
-			balance += coins.getValue();
+			balance += cbvalue.getValue();
 		}
     	return balance; 
 	}
@@ -64,7 +67,7 @@ public class Purse {
      * @return the capacity
      */
     public int getCapacity() { 
-		return capacity; 
+		return this.capacity; 
 	}
     
     /** 
@@ -89,14 +92,14 @@ public class Purse {
      * @param coin is a Coin object to insert into purse
      * @return true if coin inserted, false if can't insert
      */
-    public boolean insert( Coin coin ) {
-    	if(isFull() || coin.getValue() <= 0) 
+    public boolean insert( Valuable cbvalue ) {
+    	if(isFull() || cbvalue.getValue() <= 0) 
     	{
     		return false;
     	}
     	else 
     	{
-    		money.add(coin);
+    		money.add(cbvalue);
     		return true;
     	}
     }
@@ -109,11 +112,11 @@ public class Purse {
      *  @return array of Coin objects for money withdrawn, 
 	 *    or null if cannot withdraw requested amount.
      */
-    public Coin[] withdraw( double amount ) {
+    public Valuable[] withdraw( double amount ) {
          
-         List<Coin> list = new ArrayList<Coin>();
+         List<Valuable> list = new ArrayList<Valuable>();
         
-         Collections.sort(money);
+         Collections.sort(money, comp);
          
          double amountNeededToWithdraw = amount;
          
@@ -148,7 +151,7 @@ public class Purse {
 		// Use list.toArray( array[] ) to copy a list into an array.
 		// toArray returns a reference to the array itself.
 		
-		return list.toArray(new Coin[list.size()]);
+		return list.toArray(new Valuable[list.size()]);
         
 	}
   
