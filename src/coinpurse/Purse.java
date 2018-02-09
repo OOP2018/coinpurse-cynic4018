@@ -8,8 +8,8 @@ import java.util.Comparator;
 // You will use Collections.sort() to sort the coins
 
 /**
- *  A coin purse contains coins.
- *  You can insert coins, withdraw money, check the balance,
+ *  A purse contains value.
+ *  You can insert money, withdraw money, check the balance,
  *  and check if the purse is full.
  *  
  *  @author Katapon Sinpunyawong
@@ -27,7 +27,7 @@ public class Purse {
     
     /** 
      *  Create a purse with a specified capacity.
-     *  @param capacity is maximum number of coins you can put in purse.
+     *  @param capacity is maximum number of value of money you can put in purse.
      */
     public Purse( int capacity ) {
     	this.capacity = capacity;
@@ -36,8 +36,8 @@ public class Purse {
 
     /**
      * Count and return the number of coins in the purse.
-     * This is the number of coins, not their value.
-     * @return the number of coins in the purse
+     * This is the number of money, not their value.
+     * @return the number of money in the purse
      */
     public int count() { 
     	
@@ -63,7 +63,7 @@ public class Purse {
 
     
     /**
-     * Return the capacity of the coin purse.
+     * Return the capacity of the money purse.
      * @return the capacity
      */
     public int getCapacity() { 
@@ -86,11 +86,11 @@ public class Purse {
     }
 
     /** 
-     * Insert a coin into the purse.
-     * The coin is only inserted if the purse has space for it
-     * and the coin has positive value.  No worthless coins!
-     * @param coin is a Coin object to insert into purse
-     * @return true if coin inserted, false if can't insert
+     * Insert a money into the purse.
+     * The money is only inserted if the purse has space for it
+     * and the value of money has positive value.  No worthless coins!
+     * @param cbvalue is a Valuable object to insert into purse
+     * @return true if cbvalue inserted, false if can't insert
      */
     public boolean insert( Valuable cbvalue ) {
     	if(isFull() || cbvalue.getValue() <= 0) 
@@ -106,10 +106,10 @@ public class Purse {
     
     /**  
      *  Withdraw the requested amount of money.
-     *  Return an array of Coins withdrawn from purse,
+     *  Return an array of Valuable withdrawn from purse,
      *  or return null if cannot withdraw the amount requested.
      *  @param amount is the amount to withdraw
-     *  @return array of Coin objects for money withdrawn, 
+     *  @return array of Valuable objects for money withdrawn, 
 	 *    or null if cannot withdraw requested amount.
      */
     public Valuable[] withdraw( double amount ) {
@@ -146,7 +146,7 @@ public class Purse {
 		}
 
 		// Success.
-		// Remove the coins you want to withdraw from purse,
+		// Remove the money you want to withdraw from purse,
 		// and return them as an array.
 		// Use list.toArray( array[] ) to copy a list into an array.
 		// toArray returns a reference to the array itself.
@@ -160,7 +160,7 @@ public class Purse {
      * It can return whatever is a useful description.
      */
     public String toString() {
-    	return String.format("[ Your have %d coins | value %.2f ]" , count() , getBalance());
+    	return String.format("[ Your have %d | value %.2f ]" , count() , getBalance());
     }
 
 }

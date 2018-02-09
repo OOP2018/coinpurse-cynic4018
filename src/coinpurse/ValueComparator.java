@@ -14,7 +14,7 @@ public class ValueComparator implements Comparator<Valuable> {
 	@Override
 	public int compare(Valuable a, Valuable b) {
 		
-		if(a.getCurrency().equals(b.getCurrency())) {
+		if(a.getCurrency().equalsIgnoreCase(b.getCurrency())) {
 			
 			if(a.getValue()<b.getValue()) 
 			{
@@ -30,7 +30,7 @@ public class ValueComparator implements Comparator<Valuable> {
 			}
 			
 		}
-		return (Integer.valueOf(a.getCurrency().length())).compareTo(Integer.valueOf(b.getCurrency().length()));
+		return a.getCurrency().compareTo(b.getCurrency());
 	}
 
 }

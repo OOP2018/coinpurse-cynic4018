@@ -34,7 +34,7 @@ public class BankNote implements Valuable{
 		
 		this.currency = currency;
 		
-		serialNumber = nextSerialNumber;
+		serialNumber = nextSerialNumber++;
 	}
 	
 	/**

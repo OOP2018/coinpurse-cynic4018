@@ -9,5 +9,9 @@ public interface Valuable {
 	 * @return the value of this object
 	 */
 	public double getValue();
+	/**
+	 * Get the currency of this object.
+	 * @return the currency of this object
+	 */
 	public String getCurrency();
 }

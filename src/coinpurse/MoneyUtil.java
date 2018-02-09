@@ -92,7 +92,7 @@ public class MoneyUtil {
 	 * sort from lowest -> highest value. 
 	 * @param sort money in coins list by comparator<Valuable>.
 	 */
-	public static void sortCoinAndBanknote(List<Coin> cbvalue) {
+	public static void sortCoinAndBanknote(List<Valuable> cbvalue) {
 		Comparator<Valuable> comp = new ValueComparator();
 		java.util.Collections.sort(cbvalue, comp);
 	}
@@ -103,7 +103,7 @@ public class MoneyUtil {
 	 * @param sorted by currency from coins and money in List<valuable> sortCurrency list.
 	 * @return coins and banknotes in list that sorted(sort by currency that you want) 
 	 */
-	public static List<Valuable> filterByCurrency(List<Coin> cbmoney, String currency) {
+	public static List<Valuable> filterByCurrency(List<Valuable> cbmoney, String currency) {
 		
 		List<Valuable> sortCurrency = new ArrayList<>();
 		
@@ -163,8 +163,10 @@ public class MoneyUtil {
 		System.out.println();
 		
 		System.out.println("+-+-+-+-+ Filter +-+-+-+-");
-		sortCoinAndBanknote(coins);
-		List<Valuable> filter = filterByCurrency(coins, "USD");
+		List<Valuable> cbvalue = new ArrayList<Valuable>();
+		cbvalue.addAll(coins);
+		sortCoinAndBanknote(cbvalue);
+		List<Valuable> filter = filterByCurrency(cbvalue, "USD");
 		printValuable(filter);
 		
 	}
