@@ -12,39 +12,6 @@ public class MoneyUtil {
 	
 	/**
 	 * print coins list.
-	 * @param print coins in coins list.
-	 */
-	public static void printCoins(List<Coin> coins) {
-		
-		System.out.print("list = {");
-		
-		if(coins.size()==0) 
-		{
-			System.out.println(" }");
-		}
-		else 
-		{
-			for(int count=0 ; count < coins.size() ; count++) 
-			{
-				if(count==coins.size()-1) 
-				{
-					System.out.printf(" %s",coins.get(count));
-					break;
-				}
-				else 
-				{
-					System.out.printf(" %s,",coins.get(count));
-				}
-			}
-			System.out.println(" }");
-		}
-		
-		
-		System.out.println();
-	}
-	
-	/**
-	 * print coins list.
 	 * @param print coins and banknotes in coins list.
 	 */
 	public static void printValuable(List<Valuable> cbvalue) {
@@ -74,16 +41,6 @@ public class MoneyUtil {
 		
 		
 		System.out.println();
-	}
-	
-	/**
-	 * 
-	 * this use .sort in java.util.Collections for sort coins in list. 
-	 * sort from lowest -> highest value. 
-	 * @param sort coins in coins list.
-	 */
-	public static void sortCoin(List<Coin> coins) {
-		java.util.Collections.sort(coins);
 	}
 	
 	/**
@@ -125,46 +82,34 @@ public class MoneyUtil {
 	 */
 	public static void main(String[]args) {
 		
-		List<Coin> coins = new ArrayList<Coin>();
+		List<Valuable> cbvalue = new ArrayList<Valuable>();
 		//test same value but different currency.
-		coins.add(new Coin(10.0, "Baht"));
-		coins.add(new Coin(10.0, "Yen"));
+		cbvalue.add(new Coin(10.0, "Baht"));
+		cbvalue.add(new Coin(10.0, "Yen"));
 		
-		coins.add(new Coin(0.5, "Baht"));
-		coins.add(new Coin(2.0, "Baht"));
-		coins.add(new Coin(1.0, "Baht"));
-		coins.add(new Coin(20.0, "USD"));
+		cbvalue.add(new Coin(0.5, "Baht"));
+		cbvalue.add(new Coin(2.0, "Baht"));
+		cbvalue.add(new Coin(1.0, "Baht"));
+		cbvalue.add(new BankNote(20.0, "USD"));
+		cbvalue.add(new BankNote(100.0, "USD"));
 		
 		//test negative value
-		coins.add(new Coin(-10.0, "USD"));//choose 0.00 USD
-		
-		//test compareTo method
-		// 0.5 Baht compare to 2.0 baht : 0.5 order before 2.0 that mean result < 0
-		System.out.println(coins.get(2).compareTo(coins.get(3)));
-		// 2.0 Baht compare to 1.0 baht : 2.0 order after 1.0 that mean result > 0
-		System.out.println(coins.get(3).compareTo(coins.get(4)));
-		// 10 Baht compare to 10 Yen : have to same order that mean result = 0
-		System.out.println(coins.get(0).compareTo(coins.get(1)));
-		
-		System.out.println();
-		System.out.println("--------------------------------------");
+		cbvalue.add(new Coin(-10.0, "USD"));//choose 0.00 USD
 		
 		//not sort
 		System.out.println("+-+-+-+-+ Not sort +-+-+-+-");
-		printCoins(coins);
+		printValuable(cbvalue);
 		
 		System.out.println();
 	
 		//sort
 		System.out.println("+-+-+-+-+ Sort +-+-+-+-");
-		sortCoin(coins);
-		printCoins(coins);
+		sortCoinAndBanknote(cbvalue);
+		printValuable(cbvalue);
 	
 		System.out.println();
 		
 		System.out.println("+-+-+-+-+ Filter +-+-+-+-");
-		List<Valuable> cbvalue = new ArrayList<Valuable>();
-		cbvalue.addAll(coins);
 		sortCoinAndBanknote(cbvalue);
 		List<Valuable> filter = filterByCurrency(cbvalue, "USD");
 		printValuable(filter);
