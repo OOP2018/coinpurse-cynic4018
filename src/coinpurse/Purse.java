@@ -104,6 +104,59 @@ public class Purse {
     	}
     }
     
+    /**
+     * Withdraw amount that have the same currency .
+     * @param Valuable amount for withdraw
+     * @return array of valuable objects for money withdraw
+     *    	   null if cann't withdraw as required amount.
+     */
+    public Valuable[] withdraw( Valuable amount ) {
+         
+         List<Valuable> list = new ArrayList<>();
+        
+         Collections.sort(money, comp);
+         
+         double amountNeededToWithdraw = amount.getValue();
+         
+         if(amount.getValue() > getBalance() || amount.getValue() < 0) 
+         {
+        	return null; 
+         }
+         
+         for(int count = money.size()-1 ; count >= 0 ; count-- ) 
+         {
+        	if(amount.getCurrency().equals(money.get(count).getCurrency())) 
+        	{
+        		if(amountNeededToWithdraw-money.get(count).getValue() >= 0) 
+           	 	{
+        			amountNeededToWithdraw -= money.get(count).getValue();
+        			list.add(money.get(count));
+        			money.remove(count);
+           	 	}
+           	 	if(amountNeededToWithdraw == 0) 
+           	 	{
+           	 		break; 
+           	 	}
+           	 
+        	}
+        	 
+         }
+         
+         if(list.toArray(new Valuable[list.size()]) == null) 
+         {
+        	 return null;
+         }
+         
+         if(amountNeededToWithdraw > 0) 
+         {
+        	money.addAll(list);
+        	return null;
+         }
+		
+		return list.toArray(new Valuable[list.size()]);
+        
+	}
+    
     /**  
      *  Withdraw the requested amount of money.
      *  Return an array of Valuable withdrawn from purse,
@@ -113,51 +166,15 @@ public class Purse {
 	 *    or null if cannot withdraw requested amount.
      */
     public Valuable[] withdraw( double amount ) {
-         
-         List<Valuable> list = new ArrayList<Valuable>();
-        
-         Collections.sort(money, comp);
-         
-         double amountNeededToWithdraw = amount;
-         
-         if(amount > getBalance() || amount < 0) 
-         {
-        	return null; 
-         }
-         
-         for(int count = money.size()-1 ; count >= 0 ; count-- ) 
-         {
-        	 if(amountNeededToWithdraw-money.get(count).getValue() >= 0) 
-        	 {
-        		 amountNeededToWithdraw -= money.get(count).getValue();
-        		list.add(money.get(count));
-        		money.remove(count);
-        	 }
-        	 if(amountNeededToWithdraw == 0) 
-        	 {
-        		break; 
-        	 }
-         }
-           
-		if ( amountNeededToWithdraw != 0 )
-		{	
-			// failed. Don't change the contents of the purse.
-			return null;
-		}
-
-		// Success.
-		// Remove the money you want to withdraw from purse,
-		// and return them as an array.
-		// Use list.toArray( array[] ) to copy a list into an array.
-		// toArray returns a reference to the array itself.
-		
-		return list.toArray(new Valuable[list.size()]);
-        
+    	   
+        return withdraw( new Money(amount,"Baht"));
+	   
 	}
   
     /** 
      * toString returns a string description of the purse contents.
      * It can return whatever is a useful description.
+     * @returns a string description of the purse contents.
      */
     public String toString() {
     	return String.format("[ Your have %d | value %.2f ]" , count() , getBalance());
