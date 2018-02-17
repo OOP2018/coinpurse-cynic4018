@@ -33,6 +33,14 @@ public class BankNote extends Money{
 	}
 	
 	/**
+     * Set the serial number unique for each factory.
+     * @param nextSerialNumber for start to run serialNumber.
+     */
+    public static void setNextSerialNumber(long nextSerialNumber) {
+        BankNote.nextSerialNumber = nextSerialNumber;
+    }
+	
+	/**
 	 * this method to show the value, currency and serialnumber of banknote.
 	 * @return value, currency and serialnumber of banknote.
 	 */
