@@ -6,16 +6,15 @@ package coinpurse;
  */
 public class MalayMoneyFactory extends MoneyFactory{
 
-	/** Malay coin currency */
-	private final String CoinCurrency = "Sen";
-	/** Malay banknote currency */
-	private final String BanknoteCurrency = "Ringgit";
+	/** Malay money currency */
+	private final String currency = "Ringgit";
 	
 	/**
 	 * This constructor use to set serial number for MalayMoneyFactory.
 	 */
 	public MalayMoneyFactory() {
 		BankNote.setNextSerialNumber(1000000);
+		Money.setCurrency(currency);
 	}
 	
 	/**
@@ -30,11 +29,11 @@ public class MalayMoneyFactory extends MoneyFactory{
 		
 		if(value == 0.05 | value == 0.10 | value == 0.20 | value == 0.50) 
 		{
-			return new Coin(value*100, BanknoteCurrency.replace("Ringgit", "Sen"));
+			return new Coin(value*100, "Sen");
 		}
 		else if(value == 1 | value == 2 | value == 5 | value == 10 | value == 20 | value == 50 | value == 100) 
 		{
-			return new BankNote(value, BanknoteCurrency);
+			return new BankNote(value, currency);
 		}
 		else
 		{

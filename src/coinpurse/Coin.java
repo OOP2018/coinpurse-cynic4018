@@ -5,6 +5,9 @@ package coinpurse;
  *
  */
 public class Coin extends Money{
+	
+	/** value currency that call not same main currency*/
+	private String callcurrency;
 
 	/**
 	 * The value must not be negative.(When value is negative, it value is 0)
@@ -15,6 +18,7 @@ public class Coin extends Money{
 	public Coin(double value, String currency) {
 		
 		super(value,currency);
+		this.callcurrency = currency;
 	}
 	
 	/**
@@ -23,6 +27,11 @@ public class Coin extends Money{
 	 */
 	@Override
 	public String toString() {
+		
+		if(!getEachcountrycurrency().equals(callcurrency)) 
+		{
+			return this.getValue()+"-"+this.callcurrency;
+		}
 		return this.getValue()+"-"+this.getCurrency();
 	}
 }

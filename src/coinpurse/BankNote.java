@@ -10,6 +10,8 @@ public class BankNote extends Money{
 	private static long nextSerialNumber = 1000000;
 	/** banknote have unique a serialnumber*/
 	private long serialNumber;
+	/** value currency that call not same main currency*/
+	private String callcurrency;
 	
 	/**
 	 * The value must not be negative.(When value is negative, it value is 0)
@@ -20,6 +22,7 @@ public class BankNote extends Money{
 	public BankNote(double value, String currency) {
 		
 		super(value,currency);
+		this.callcurrency = currency;
 		serialNumber = nextSerialNumber++;
 	}
 	
@@ -46,6 +49,10 @@ public class BankNote extends Money{
 	 */
 	@Override
 	public String toString() {
+		if(!getEachcountrycurrency().equals(callcurrency)) 
+		{
+			return this.getValue()+"-"+this.callcurrency+" note ["+this.getSerial()+"]";
+		}
 		return this.getValue()+"-"+this.getCurrency()+" note ["+this.getSerial()+"]";
 	}
 }

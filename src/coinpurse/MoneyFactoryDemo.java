@@ -35,6 +35,7 @@ public class MoneyFactoryDemo {
 		//test create coin.
 		Valuable mlcoin = MLmoney.createMoney("0.50");
 		System.out.println(mlcoin.toString());
+		System.out.println(mlcoin.getCurrency());
 		//test create banknote.
 		Valuable mlbanknote = MLmoney.createMoney("1");
 		System.out.println(mlbanknote.toString());
