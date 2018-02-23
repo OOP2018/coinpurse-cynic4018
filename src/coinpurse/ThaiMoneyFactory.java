@@ -8,12 +8,13 @@ public class ThaiMoneyFactory extends MoneyFactory {
 	
 	/** Thai money currency */
 	private final String currency = "Baht";
+	/** banknote have unique a serialnumber that starting from 1000000*/
+	private static long nextSerialNumber = 1000000;
 	
 	/**
 	 * This constructor use to set serial number for ThaiMoneyFactory.
 	 */
 	public ThaiMoneyFactory() {
-		BankNote.setNextSerialNumber(1000000);
 		Money.setCurrency(currency);
 	}
 	
@@ -33,7 +34,7 @@ public class ThaiMoneyFactory extends MoneyFactory {
 		}
 		else if(value == 20 | value == 50 | value == 100 | value == 500 | value == 1000) 
 		{
-			return new BankNote(value, currency);
+			return new BankNote(value, currency, nextSerialNumber++);
 		}
 		else
 		{
@@ -42,3 +43,4 @@ public class ThaiMoneyFactory extends MoneyFactory {
 	}
 
 }
+
