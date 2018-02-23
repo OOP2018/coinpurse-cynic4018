@@ -18,15 +18,16 @@ public class MoneyUtil {
 		
 		System.out.print("list = {");
 		
-		if(cbvalue.size()==0) 
+		int size = cbvalue.size();
+		if(size==0) 
 		{
 			System.out.println(" }");
 		}
 		else 
 		{
-			for(int count=0 ; count < cbvalue.size() ; count++) 
+			for(int count=0 ; count < size ; count++) 
 			{
-				if(count==cbvalue.size()-1) 
+				if(count==size-1) 
 				{
 					System.out.printf(" %s",cbvalue.get(count));
 					break;
@@ -90,8 +91,6 @@ public class MoneyUtil {
 		cbvalue.add(new Coin(0.5, "Baht"));
 		cbvalue.add(new Coin(2.0, "Baht"));
 		cbvalue.add(new Coin(1.0, "Baht"));
-		cbvalue.add(new BankNote(20.0, "USD"));
-		cbvalue.add(new BankNote(100.0, "USD"));
 		
 		//test negative value
 		cbvalue.add(new Coin(-10.0, "USD"));//choose 0.00 USD
