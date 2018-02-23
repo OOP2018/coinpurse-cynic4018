@@ -113,47 +113,44 @@ public class Purse {
     public Valuable[] withdraw( Valuable amount ) {
          
          List<Valuable> list = new ArrayList<>();
+         
         
          Collections.sort(money, comp);
          
          double amountNeededToWithdraw = amount.getValue();
          
-         if(amount.getValue() > getBalance() || amount.getValue() < 0) 
-         {
-        	return null; 
-         }
+         if(amountNeededToWithdraw <=0 || amount == null) return null;
          
          for(int count = money.size()-1 ; count >= 0 ; count-- ) 
          {
-        	if(amount.getCurrency().equals(money.get(count).getCurrency())) 
+        	 Valuable m = money.get(count);
+        	if(amountNeededToWithdraw == 0)
         	{
-        		if(amountNeededToWithdraw-money.get(count).getValue() >= 0) 
+        		 break;
+        	}
+        	if(amount.getCurrency().equals(m.getCurrency())) 
+        	{
+        		if(amountNeededToWithdraw-m.getValue() >= 0) 
            	 	{
-        			amountNeededToWithdraw -= money.get(count).getValue();
+        			amountNeededToWithdraw -= m.getValue();
         			list.add(money.get(count));
         			money.remove(count);
-           	 	}
-           	 	if(amountNeededToWithdraw == 0) 
-           	 	{
-           	 		break; 
            	 	}
            	 
         	}
         	 
          }
          
-         if(list.toArray(new Valuable[list.size()]) == null) 
-         {
-        	 return null;
-         }
-         
+         Valuable[] array = new Valuable[list.size()];
+         array = list.toArray(array);
+          
          if(amountNeededToWithdraw > 0) 
          {
         	money.addAll(list);
         	return null;
          }
 		
-		return list.toArray(new Valuable[list.size()]);
+		return array;
         
 	}
     
@@ -181,4 +178,5 @@ public class Purse {
     }
 
 }
+
 
