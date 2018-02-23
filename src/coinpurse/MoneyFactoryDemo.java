@@ -19,7 +19,9 @@ public class MoneyFactoryDemo {
 		//test create banknote.
 		Valuable thbanknote = THmoney.createMoney("1000");
 		System.out.println(thbanknote.toString());
-		
+		Valuable thbanknote2 = THmoney.createMoney(1000);
+		System.out.println(thbanknote2.toString());
+
 //		//test create value haven't in thailand coin/banknote.
 //		Valuable thnone = THmoney.createMoney("7");  // This value haven't in thailand Coin/Banknote.
 //		System.out.println(thnone.toString());
@@ -39,6 +41,10 @@ public class MoneyFactoryDemo {
 		//test create banknote.
 		Valuable mlbanknote = MLmoney.createMoney("1");
 		System.out.println(mlbanknote.toString());
+		Valuable mlbanknote2 = MLmoney.createMoney(1);
+		System.out.println(mlbanknote2.toString());
+		Valuable mlbanknote3 = MLmoney.createMoney(2);
+		System.out.println(mlbanknote3.toString());
 		
 //		//test create value haven't in malaysia coin/banknote.
 //		Valuable mlnone = MLmoney.createMoney("9");  // This value haven't in Malaysia Coin/Banknote.
@@ -52,3 +58,4 @@ public class MoneyFactoryDemo {
 	
 	}
 }
+
