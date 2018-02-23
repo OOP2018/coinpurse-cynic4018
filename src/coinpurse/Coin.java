@@ -16,9 +16,10 @@ public class Coin extends Money{
 	 * @param currency of coin.
 	 */
 	public Coin(double value, String currency) {
-		
-		super(value,currency);
+	
+		super(value, getEachcountrycurrency()==null? currency : Money.getEachcountrycurrency());
 		this.callcurrency = currency;
+		
 	}
 	
 	/**
@@ -27,11 +28,7 @@ public class Coin extends Money{
 	 */
 	@Override
 	public String toString() {
-		
-		if(!getEachcountrycurrency().equals(callcurrency)) 
-		{
 			return this.getValue()+"-"+this.callcurrency;
-		}
-		return this.getValue()+"-"+this.getCurrency();
+		
 	}
 }
