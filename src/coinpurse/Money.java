@@ -27,8 +27,9 @@ public class Money implements Valuable{
 		{
 			this.value = value;
 		}
+	
+			this.currency = currency;
 		
-		this.currency = currency;
 	}
 	
 	/**
@@ -56,7 +57,7 @@ public class Money implements Valuable{
 	 * Get the country money value.
 	 * @return country money value.
 	 */
-	public String getEachcountrycurrency() {
+	public static String getEachcountrycurrency() {
 		return eachcountrycurrency;
 	}
 	
@@ -96,10 +97,7 @@ public class Money implements Valuable{
 	 * @return money currency.
 	 */
 	public String getCurrency() {
-		if(!getEachcountrycurrency().equals(currency)) 
-		{
-			return eachcountrycurrency;
-		}
+		
 		return this.currency;
 	}
 
