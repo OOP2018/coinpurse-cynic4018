@@ -8,12 +8,13 @@ public class MalayMoneyFactory extends MoneyFactory{
 
 	/** Malay money currency */
 	private final String currency = "Ringgit";
+	/** banknote have unique a serialnumber that starting from 1000000*/
+	private static long nextSerialNumber = 1000000;
 	
 	/**
 	 * This constructor use to set serial number for MalayMoneyFactory.
 	 */
 	public MalayMoneyFactory() {
-		BankNote.setNextSerialNumber(1000000);
 		Money.setCurrency(currency);
 	}
 	
@@ -33,7 +34,7 @@ public class MalayMoneyFactory extends MoneyFactory{
 		}
 		else if(value == 1 | value == 2 | value == 5 | value == 10 | value == 20 | value == 50 | value == 100) 
 		{
-			return new BankNote(value, currency);
+			return new BankNote(value, currency, nextSerialNumber++);
 		}
 		else
 		{
@@ -41,3 +42,4 @@ public class MalayMoneyFactory extends MoneyFactory{
 		}
 	}
 }
+
