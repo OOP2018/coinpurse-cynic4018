@@ -6,8 +6,6 @@ package coinpurse;
  */
 public class BankNote extends Money{
 	
-	/** banknote have unique a serialnumber that starting from 1000000*/
-	private static long nextSerialNumber = 1000000;
 	/** banknote have unique a serialnumber*/
 	private long serialNumber;
 	/** value currency that call not same main currency*/
@@ -19,11 +17,12 @@ public class BankNote extends Money{
 	 * @param currency of banknote.
 	 * @param each banknote have a unique serialnumber that starting from 1000000(nextSerialNumber). 
 	 */
-	public BankNote(double value, String currency) {
+	public BankNote(double value, String currency, long nextSerialNumber) {
 		
-		super(value,currency);
-		this.callcurrency = currency;
-		serialNumber = nextSerialNumber++;
+		super(value,getEachcountrycurrency() == null? currency : Money.getEachcountrycurrency());
+		this.callcurrency = currency;	
+		this.serialNumber = nextSerialNumber;
+		nextSerialNumber++;
 	}
 	
 	
@@ -35,13 +34,6 @@ public class BankNote extends Money{
 		return this.serialNumber;
 	}
 	
-	/**
-     * Set the serial number unique for each factory.
-     * @param nextSerialNumber for start to run serialNumber.
-     */
-    public static void setNextSerialNumber(long nextSerialNumber) {
-        BankNote.nextSerialNumber = nextSerialNumber;
-    }
 	
 	/**
 	 * this method to show the value, currency and serialnumber of banknote.
@@ -49,10 +41,8 @@ public class BankNote extends Money{
 	 */
 	@Override
 	public String toString() {
-		if(!getEachcountrycurrency().equals(callcurrency)) 
-		{
+
 			return this.getValue()+"-"+this.callcurrency+" note ["+this.getSerial()+"]";
-		}
-		return this.getValue()+"-"+this.getCurrency()+" note ["+this.getSerial()+"]";
 	}
 }
+
